@@ -1,6 +1,6 @@
-import { requireHumanConfirmation } from "../../domain/confirmation.policy";
-import { memberEmails } from "../../domain/member-email.value";
-import type { Membership } from "../../domain/membership.value";
+import { requireHumanConfirmation } from "@/modules/membership/domain/confirmation.policy";
+import { memberEmails } from "@/modules/membership/domain/member-email.value";
+import type { Membership } from "@/modules/membership/domain/membership.value";
 import type { AuditRepo } from "../ports/audit.repo";
 import type { ClockService } from "../ports/clock.service";
 import type { MembershipService } from "../ports/membership.service";

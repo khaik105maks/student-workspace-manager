@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { memberEmail } from "../../domain/member-email.value";
+import { memberEmail } from "@/modules/membership/domain/member-email.value";
 import type { MembershipService } from "../ports/membership.service";
 import { CheckMemberCase } from "./check-member.case";
 

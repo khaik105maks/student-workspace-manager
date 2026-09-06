@@ -35,9 +35,9 @@ module.exports = {
       to: { path: "^src/app" },
     },
     {
-      name: "bootstrap-is-the-composition-root",
+      name: "modules-do-not-depend-on-bootstrap",
       severity: "error",
-      from: { pathNot: "^src/bootstrap" },
+      from: { path: "^src/modules" },
       to: { path: "^src/bootstrap" },
     },
     {

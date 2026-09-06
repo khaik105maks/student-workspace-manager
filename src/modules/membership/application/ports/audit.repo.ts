@@ -1,4 +1,4 @@
-import type { Membership } from "../../domain/membership.value";
+import type { Membership } from "@/modules/membership/domain/membership.value";
 
 export interface AuditEntry {
   readonly action: "member-add";

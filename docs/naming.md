@@ -16,6 +16,18 @@ Use singular concept names by default. Use plural names only when the concept is
 intrinsically a collection or protocol. Variables that actually hold multiple
 values remain plural (`emails`, `members`).
 
+Group adapters by external technology once the group contains multiple files.
+The directory supplies context, so do not repeat it in every filename:
+
+```text
+adapters/driven/google/
+├── auth.factory.ts
+├── account.schema.ts
+├── account.type.ts
+├── token.service.ts
+└── token.type.ts
+```
+
 ## Approved roles
 
 | Suffix | Meaning | Allowed location |
@@ -29,6 +41,8 @@ values remain plural (`emails`, `members`).
 | `.repo.ts` | Persistence collection and database boundary | ports or `adapters/driven/repo` |
 | `.entity.ts` | Domain object with identity and lifecycle | domain |
 | `.value.ts` | Immutable value without identity | domain |
+| `.schema.ts` | Runtime validation and transport parsing | adapters or domain boundary |
+| `.type.ts` | Type-only contract with no runtime behavior | any owning layer |
 
 `repo` is reserved for persistence. HTTP, Google Chat, Classroom, files, and AI
 clients are not repositories unless they persist and retrieve domain objects as

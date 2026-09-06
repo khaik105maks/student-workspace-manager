@@ -1,5 +1,5 @@
-import { memberEmails } from "../../domain/member-email.value";
-import type { Membership } from "../../domain/membership.value";
+import { memberEmails } from "@/modules/membership/domain/member-email.value";
+import type { Membership } from "@/modules/membership/domain/membership.value";
 import type { MembershipService } from "../ports/membership.service";
 
 export class CheckMemberCase {

@@ -17,6 +17,20 @@ npm run dev
 
 Open <http://localhost:3000>.
 
+## Google OAuth
+
+Copy `.env.example` to `.env.local` and set `AUTH_SECRET`, `AUTH_GOOGLE_ID`, and
+`AUTH_GOOGLE_SECRET`. Use a Google OAuth client of type **Web application** with
+this local redirect URI:
+
+```text
+http://localhost:3000/api/auth/callback/google
+```
+
+Only root `@khai.edu` accounts are accepted. Authentication requests the
+read-only Google Chat membership scope; access tokens stay in the encrypted
+server session and are never exposed in the public session payload.
+
 ## Architecture
 
 Read these contracts before changing production code:

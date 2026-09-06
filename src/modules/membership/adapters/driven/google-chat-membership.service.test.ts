@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { memberEmail } from "../../domain/member-email.value";
+import { memberEmail } from "@/modules/membership/domain/member-email.value";
 import { GoogleChatMembershipService } from "./google-chat-membership.service";
 
 const loggerService = { info: vi.fn(), error: vi.fn() };

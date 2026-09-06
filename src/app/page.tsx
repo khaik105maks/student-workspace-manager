@@ -16,7 +16,9 @@ function CapabilityList() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await auth();
+
   return (
     <main className="mx-auto grid min-h-screen max-w-3xl content-center gap-8 p-8">
       <header className="grid gap-3">
@@ -25,6 +27,9 @@ export default function HomePage() {
         <p className="text-zinc-600">Керування складом навчальних просторів.</p>
       </header>
       <CapabilityList />
+      <AuthButton isAuthenticated={session !== null} />
     </main>
   );
 }
+import { auth } from "../bootstrap/auth.factory";
+import { AuthButton } from "./auth-button";

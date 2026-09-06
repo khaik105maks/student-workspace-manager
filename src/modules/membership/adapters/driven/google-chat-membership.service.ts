@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import type { MembershipService } from "../../application/ports/membership.service";
-import type { LoggerService } from "../../application/ports/logger.service";
-import type { MemberEmail } from "../../domain/member-email.value";
-import type { MemberStatus } from "../../domain/member-status.value";
-import type { Membership } from "../../domain/membership.value";
+import type { LoggerService } from "@/modules/membership/application/ports/logger.service";
+import type { MembershipService } from "@/modules/membership/application/ports/membership.service";
+import type { MemberEmail } from "@/modules/membership/domain/member-email.value";
+import type { MemberStatus } from "@/modules/membership/domain/member-status.value";
+import type { Membership } from "@/modules/membership/domain/membership.value";
 
 const membershipSchema = z.object({ state: z.string().optional() });
 const membershipListSchema = z.object({ memberships: z.array(membershipSchema).default([]) });
