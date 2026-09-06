@@ -31,6 +31,16 @@ Only root `@khai.edu` accounts are accepted. Authentication requests the
 read-only Google Chat membership scope; access tokens stay in the encrypted
 server session and are never exposed in the public session payload.
 
+Authenticated users can check up to 500 addresses with:
+
+```text
+POST /api/membership/check
+```
+
+The route reads the OAuth token only from the encrypted Auth.js session cookie,
+revalidates the account domain, refreshes expired Google access tokens on the
+server, and returns only email/status membership views.
+
 ## Architecture
 
 Read these contracts before changing production code:
