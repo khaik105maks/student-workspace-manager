@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Student Workspace Manager
 
-## Getting Started
+Internal KhAI tool for reconciling student rosters with Google Chat and Google
+Classroom. The application uses TypeScript, Next.js, and Ports and Adapters.
 
-First, run the development server:
+## Requirements
+
+- Node.js 24
+- npm 11+
+
+## Start locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Read these contracts before changing production code:
 
-## Learn More
+- [`docs/architecture.md`](docs/architecture.md)
+- [`docs/clean-code.md`](docs/clean-code.md)
+- [`docs/naming.md`](docs/naming.md)
+- [`AGENTS.md`](AGENTS.md)
 
-To learn more about Next.js, take a look at the following resources:
+Business capabilities live under `src/modules`. Next.js is a delivery adapter;
+Google APIs, persistence, and AI are driven adapters.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Quality gate
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run check
+```
 
-## Deploy on Vercel
+The command runs ESLint, strict TypeScript, dependency rules, unit tests, and a
+production build. GitHub Actions runs the same command for every pull request
+and push to `main`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Security
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Never commit OAuth client secrets, tokens, roster imports, or generated reports.
+External writes require explicit human confirmation and an audit record.
+Operational logs are structured JSON produced by Pino and exclude member email
+addresses. Authorization headers and access-token fields are redacted. Audit
+records remain in the configured JSONL repository and must be access-controlled.
