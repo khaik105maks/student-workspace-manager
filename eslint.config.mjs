@@ -12,12 +12,12 @@ const eslintConfig = defineConfig([
       "check-file/filename-naming-convention": [
         "error",
         {
-          "src/modules/**/domain/*.ts": "+([a-z0-9-]).@(entity|value|policy|factory|service)?(.test)",
-          "src/modules/**/application/ports/*.ts": "+([a-z0-9-]).@(service|resolver|factory|policy|facade|repo)",
+          "src/modules/**/domain/*.ts": "+([a-z0-9-]).@(entity|value|policy|factory|service|schema|type)?(.test)",
+          "src/modules/**/application/ports/*.ts": "+([a-z0-9-]).@(service|resolver|factory|policy|facade|repo|schema|type)",
           "src/modules/**/application/use-cases/*.ts": "+([a-z0-9-]).case?(.test)",
           "src/modules/**/adapters/driven/repo/*.ts": "+([a-z0-9-]).repo?(.test)",
-          "src/modules/**/adapters/driven/*.ts": "+([a-z0-9-]).@(service|resolver|factory|policy|facade)?(.test)",
-          "src/modules/**/adapters/driving/*.ts": "+([a-z0-9-]).@(service|resolver|factory|policy|facade)?(.test)",
+          "src/modules/**/adapters/driven/**/*.ts": "+([a-z0-9-]).@(service|resolver|factory|policy|facade|repo|schema|type)?(.test)",
+          "src/modules/**/adapters/driving/**/*.ts": "+([a-z0-9-]).@(service|resolver|factory|policy|facade|schema|type)?(.test)",
         },
         {
           errorMessage: "File '{{ target }}' violates the role-suffix naming contract '{{ pattern }}'. See docs/naming.md.",
@@ -66,6 +66,17 @@ const eslintConfig = defineConfig([
       "max-statements": ["error", 10],
       "no-else-return": ["error", { allowElseIf: false }],
       "no-nested-ternary": "error",
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              regex: "^\\.\\./\\.\\./",
+              message: "Use the @/ alias for imports crossing two or more parent directories.",
+            },
+          ],
+        },
+      ],
       "no-restricted-syntax": [
         "error",
         { selector: "IfStatement IfStatement", message: "Nested if statements are forbidden; use guard clauses or extraction." },

@@ -1,13 +1,13 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { memberEmail } from "../../domain/member-email.value";
+import { memberEmail } from "@/modules/membership/domain/member-email.value";
 import type { MembershipService } from "../ports/membership.service";
 import { CheckMemberCase } from "./check-member.case";
 
 describe("CheckMemberCase", () => {
   it("checks each normalized email once", async () => {
     const check = vi.fn().mockResolvedValue([]);
-    const membershipService: MembershipService = { check, add: vi.fn() };
+    const membershipService: MembershipService = { check, add: vi.fn(), list: vi.fn() };
     const useCase = new CheckMemberCase(membershipService);
 
     await useCase.execute("spaces/course", [

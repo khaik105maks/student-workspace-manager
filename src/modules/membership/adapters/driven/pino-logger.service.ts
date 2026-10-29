@@ -1,6 +1,6 @@
 import pino, { type Logger } from "pino";
 
-import type { LogContext, LoggerService } from "../../application/ports/logger.service";
+import type { LogContext, LoggerService } from "@/modules/membership/application/ports/logger.service";
 
 export class PinoLoggerService implements LoggerService {
   private readonly logger: Logger;

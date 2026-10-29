@@ -19,6 +19,8 @@ This standard is executable through ESLint and `npm run check`.
   (`GoogleChatMembershipService`).
 - Use-case classes and files use a singular imperative business action, such as
   `CheckMemberCase` and `check-member.case.ts`.
+- Use `@/` for imports crossing two or more parent directories. Relative imports
+  are reserved for nearby files within the same feature area.
 
 ## Function design
 
@@ -29,6 +31,8 @@ This standard is executable through ESLint and `npm run check`.
 - Prefer guard clauses, extraction, lookup tables, and polymorphism over
   branching.
 - A function operates at one level of abstraction.
+- Keep runtime schemas, type-only contracts, and executable behavior in
+  separate files when each represents an independently named responsibility.
 
 ## Declarative and functional core
 

@@ -41,8 +41,10 @@ src/modules/<capability>/
 └── public/                 Deliberate cross-module API only
 ```
 
-`src/app` contains Next.js routes and composition only. Dependency injection is
-explicit at the composition boundary; use cases never construct SDK clients.
+`src/app` contains Next.js delivery code and imports ready application graphs
+from `src/bootstrap`. Dependency injection is explicit at that composition
+boundary; use cases never construct SDK clients. Modules must never import
+`src/bootstrap`.
 When a second capability module is introduced, add explicit dependency-cruiser
 rules that permit cross-module imports only through each module's `public/`
 entry point. Generic capture-group rules are not accepted because they can

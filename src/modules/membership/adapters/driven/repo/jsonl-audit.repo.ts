@@ -1,7 +1,7 @@
 import { appendFile, mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 
-import type { AuditEntry, AuditRepo } from "../../../application/ports/audit.repo";
+import type { AuditEntry, AuditRepo } from "@/modules/membership/application/ports/audit.repo";
 
 export class JsonlAuditRepo implements AuditRepo {
   constructor(private readonly filePath: string) {}

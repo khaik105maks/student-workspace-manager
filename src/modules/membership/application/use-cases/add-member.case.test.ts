@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { memberEmail } from "../../domain/member-email.value";
-import type { Membership } from "../../domain/membership.value";
+import { memberEmail } from "@/modules/membership/domain/member-email.value";
+import type { Membership } from "@/modules/membership/domain/membership.value";
 import type { AuditRepo } from "../ports/audit.repo";
 import type { ClockService } from "../ports/clock.service";
 import type { MembershipService } from "../ports/membership.service";
@@ -13,7 +13,7 @@ describe("AddMemberCase", () => {
 });
 
 async function rejectsUnconfirmedWrite() {
-  const membershipService: MembershipService = { check: vi.fn(), add: vi.fn() };
+  const membershipService: MembershipService = { check: vi.fn(), add: vi.fn(), list: vi.fn() };
   const auditRepo: AuditRepo = { append: vi.fn() };
   const clockService: ClockService = { now: vi.fn() };
   const useCase = new AddMemberCase(membershipService, auditRepo, clockService);
@@ -32,7 +32,7 @@ async function addsAndAuditsResult() {
   const add = vi.fn().mockResolvedValue(addedMemberships);
   const append = vi.fn().mockResolvedValue(undefined);
   const useCase = new AddMemberCase(
-    { check: vi.fn(), add },
+    { check: vi.fn(), add, list: vi.fn() },
     { append },
     { now: () => "2026-09-06T09:00:00.000Z" },
   );
