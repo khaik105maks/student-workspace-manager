@@ -4,4 +4,5 @@ export interface ServerEnv {
   readonly googleClientSecret: string;
   readonly auditPath: string;
   readonly logLevel: string;
+  readonly chatSpaceId: string;
 }

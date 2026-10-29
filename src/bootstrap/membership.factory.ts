@@ -4,6 +4,7 @@ import { PinoLoggerService } from "../modules/membership/adapters/driven/pino-lo
 import { SystemClockService } from "../modules/membership/adapters/driven/system-clock.service";
 import { AddMemberCase } from "../modules/membership/application/use-cases/add-member.case";
 import { CheckMemberCase } from "../modules/membership/application/use-cases/check-member.case";
+import { ListMemberCase } from "../modules/membership/application/use-cases/list-member.case";
 
 export interface MembershipConfig {
   readonly accessToken: string;
@@ -20,6 +21,10 @@ export class MembershipFactory {
 
   createCheckMemberCase(): CheckMemberCase {
     return new CheckMemberCase(this.createMembershipService());
+  }
+
+  createListMemberCase(): ListMemberCase {
+    return new ListMemberCase(this.createMembershipService());
   }
 
   createAddMemberCase(): AddMemberCase {

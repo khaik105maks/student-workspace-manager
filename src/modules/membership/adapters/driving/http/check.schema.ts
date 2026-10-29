@@ -1,8 +1,16 @@
 import { z } from "zod";
 
-import type { CheckMemberRequest } from "./check.type";
+import type { CheckMemberRequest, CheckMemberResponse } from "./check.type";
 
 export const checkMemberSchema: z.ZodType<CheckMemberRequest> = z.object({
-  spaceId: z.string().startsWith("spaces/"),
   emails: z.array(z.string()).min(1).max(500),
+});
+
+export const checkMemberResponseSchema: z.ZodType<CheckMemberResponse> = z.object({
+  memberships: z.array(
+    z.object({
+      email: z.email(),
+      status: z.enum(["joined", "invited", "not-member", "unknown"]),
+    }),
+  ),
 });

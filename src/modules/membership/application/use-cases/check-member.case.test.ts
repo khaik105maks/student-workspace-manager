@@ -7,7 +7,7 @@ import { CheckMemberCase } from "./check-member.case";
 describe("CheckMemberCase", () => {
   it("checks each normalized email once", async () => {
     const check = vi.fn().mockResolvedValue([]);
-    const membershipService: MembershipService = { check, add: vi.fn() };
+    const membershipService: MembershipService = { check, add: vi.fn(), list: vi.fn() };
     const useCase = new CheckMemberCase(membershipService);
 
     await useCase.execute("spaces/course", [

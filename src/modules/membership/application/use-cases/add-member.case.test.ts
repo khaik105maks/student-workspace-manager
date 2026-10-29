@@ -13,7 +13,7 @@ describe("AddMemberCase", () => {
 });
 
 async function rejectsUnconfirmedWrite() {
-  const membershipService: MembershipService = { check: vi.fn(), add: vi.fn() };
+  const membershipService: MembershipService = { check: vi.fn(), add: vi.fn(), list: vi.fn() };
   const auditRepo: AuditRepo = { append: vi.fn() };
   const clockService: ClockService = { now: vi.fn() };
   const useCase = new AddMemberCase(membershipService, auditRepo, clockService);
@@ -32,7 +32,7 @@ async function addsAndAuditsResult() {
   const add = vi.fn().mockResolvedValue(addedMemberships);
   const append = vi.fn().mockResolvedValue(undefined);
   const useCase = new AddMemberCase(
-    { check: vi.fn(), add },
+    { check: vi.fn(), add, list: vi.fn() },
     { append },
     { now: () => "2026-09-06T09:00:00.000Z" },
   );

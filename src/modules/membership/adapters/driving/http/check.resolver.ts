@@ -5,11 +5,14 @@ import { checkMemberSchema } from "./check.schema";
 import type { MembershipView } from "./check.type";
 
 export class CheckMemberResolver {
-  constructor(private readonly checkMemberCase: CheckMemberCase) {}
+  constructor(
+    private readonly checkMemberCase: CheckMemberCase,
+    private readonly spaceId: string,
+  ) {}
 
   async resolve(payload: unknown): Promise<ReadonlyArray<MembershipView>> {
     const request = checkMemberSchema.parse(payload);
-    const memberships = await this.checkMemberCase.execute(request.spaceId, request.emails);
+    const memberships = await this.checkMemberCase.execute(this.spaceId, request.emails);
     return memberships.map(toMembershipView);
   }
 }
